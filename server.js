@@ -14,44 +14,45 @@ mongoose.connect("mongodb+srv://andyhplau:comp1537@cluster-comp1537-assign.679wm
 });
 
 const pokemonSchema = new mongoose.Schema({
-    abilities: {
-        ability: {
-            name: String,
-            url: String
-        },
-        is_hidden: Boolean,
-        slot: Number
-    },
-    height: Number,
-    id: Number,
-    name: String,
-    sprites: {
-        other: {
-            official_artwork: {
-                front_default: String
-            }
-        }
-    },
-    stats: [{
-        base_stat: Number,
-        effort: Number,
-        stat: {
-            name: String,
-            url: String
-        }
-    }],
-    types: [{
-        slot: Number,
-        type: {
-            name: String,
-            url: String
-        }
-    }],
-    weight: Number
+    // abilities: {
+    //     ability: {
+    //         name: String,
+    //         url: String
+    //     },
+    //     is_hidden: Boolean,
+    //     slot: Number
+    // },
+    // height: Number,
+    // id: Number,
+    // name: String,
+    // sprites: {
+    //     other: {
+    //         official_artwork: {
+    //             front_default: String
+    //         }
+    //     }
+    // },
+    // stats: [{
+    //     base_stat: Number,
+    //     effort: Number,
+    //     stat: {
+    //         name: String,
+    //         url: String
+    //     }
+    // }],
+    // types: [{
+    //     slot: Number,
+    //     type: {
+    //         name: String,
+    //         url: String
+    //     }
+    // }],
+    // weight: Number
 });
 
-// the 's' in 'timelines' is important
 const pokemonModel = mongoose.model("pokemons", pokemonSchema);
+const apiTypeModel = mongoose.model("api_types", pokemonSchema);
+const typeModel = mongoose.model("types", pokemonSchema);
 
 app.listen(process.env.PORT || 5000, function (err) {
     if (err) console.log(err);
@@ -85,6 +86,30 @@ app.get('/',function(req,res){
 // R
 app.get('/api/pokemon/:id', function (req, res) {
     pokemonModel.find({
+        id: req.params.id
+    }, function (err, data) {
+        if (err) {
+            console.log("Error " + err);
+        } else {
+            console.log("Data " + data);
+        }
+        res.send(data);
+    });
+})
+
+app.get('/api/type', function (req, res) {
+    apiTypeModel.find({}, function (err, data) {
+        if (err) {
+            console.log("Error " + err);
+        } else {
+            console.log("Data " + data);
+        }
+        res.send(data);
+    });
+})
+
+app.get('/api/type/:id', function (req, res) {
+    typeModel.find({
         id: req.params.id
     }, function (err, data) {
         if (err) {
