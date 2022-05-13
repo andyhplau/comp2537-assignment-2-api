@@ -59,6 +59,10 @@ app.listen(process.env.PORT || 5000, function (err) {
 
 // app.use(express.static('./public')
 
+app.get('/',function(req,res){
+    res.send("<p>To access pokemon: /api/pokemon/:id</P><br><p>To access type: /api/type/:id</p>")
+})
+
 // CRUD
 
 // C
