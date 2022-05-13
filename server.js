@@ -1,5 +1,7 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
+app.use(cors())
 app.set('view engine', 'ejs');
 const https = require('https');
 const bodyparser = require("body-parser");
@@ -23,7 +25,7 @@ app.listen(process.env.PORT || 5000, function (err) {
     if (err) console.log(err);
 })
 
-app.get('/',function(req,res){
+app.get('/', function (req, res) {
     res.send("<p>To access pokemon: /api/pokemon/:id</P><br><p>To access type: /api/type/:id</p>")
 })
 
