@@ -16,7 +16,8 @@ mongoose.connect("mongodb+srv://andyhplau:comp1537@cluster-comp1537-assign.679wm
 });
 
 const pokemonSchema = new mongoose.Schema({
-    id: Number
+    id: Number,
+    name: String
 });
 
 const pokemonModel = mongoose.model("pokemons", pokemonSchema);
@@ -34,9 +35,13 @@ app.get('/', function (req, res) {
 // CRUD
 
 // R
-app.get('/api/pokemon/:id', function (req, res) {
+app.get('/api/pokemon/:id/:name', function (req, res) {
     pokemonModel.find({
-        id: req.params.id
+        $or: [{
+            id: req.params.id
+        }, {
+            name: req.params.name
+        }]
     }, function (err, data) {
         if (err) {
             console.log("Error " + err);
