@@ -15,7 +15,9 @@ mongoose.connect("mongodb+srv://andyhplau:comp1537@cluster-comp1537-assign.679wm
     useUnifiedTopology: true
 });
 
-const pokemonSchema = new mongoose.Schema({});
+const pokemonSchema = new mongoose.Schema({
+    id: Number
+});
 
 const pokemonModel = mongoose.model("pokemons", pokemonSchema);
 const apiTypeModel = mongoose.model("api_types", pokemonSchema);
@@ -42,7 +44,7 @@ app.get('/api/pokemon/:id', function (req, res) {
             console.log("Data " + data);
         }
         res.send(data[0]);
-    });
+    })
 })
 
 app.get('/api/type', function (req, res) {
