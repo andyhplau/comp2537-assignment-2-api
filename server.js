@@ -48,18 +48,18 @@ app.get('/api/pokemon/:id', function (req, res) {
     })
 })
 
-app.get('/api/pokemon/:name', function (req, res) {
-    pokemonModel.find({
-        name: req.params.name
-    }, function (err, data) {
-        if (err) {
-            console.log("Error " + err);
-        } else {
-            console.log("Data " + data);
-        }
-        res.send(data[0]);
-    })
-})
+// app.get('/api/pokemon/:name', function (req, res) {
+//     pokemonModel.find({
+//         name: req.params.name
+//     }, function (err, data) {
+//         if (err) {
+//             console.log("Error " + err);
+//         } else {
+//             console.log("Data " + data);
+//         }
+//         res.send(data[0]);
+//     })
+// })
 
 app.get('/api/type', function (req, res) {
     apiTypeModel.find({}, function (err, data) {
