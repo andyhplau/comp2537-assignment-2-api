@@ -35,13 +35,22 @@ app.get('/', function (req, res) {
 // CRUD
 
 // R
-app.get('/api/pokemon/:id/:name', function (req, res) {
+app.get('/api/pokemon/:id', function (req, res) {
     pokemonModel.find({
-        $or: [{
-            id: req.params.id
-        }, {
-            name: req.params.name
-        }]
+        id: req.params.id
+    }, function (err, data) {
+        if (err) {
+            console.log("Error " + err);
+        } else {
+            console.log("Data " + data);
+        }
+        res.send(data[0]);
+    })
+})
+
+app.get('/api/pokemon/:name', function (req, res) {
+    pokemonModel.find({
+        name: req.params.name
     }, function (err, data) {
         if (err) {
             console.log("Error " + err);
