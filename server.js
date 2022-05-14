@@ -29,7 +29,7 @@ app.listen(process.env.PORT || 5000, function (err) {
 })
 
 app.get('/', function (req, res) {
-    res.send("<p>To access pokemon: /api/pokemon/:id</P><br><p>To access type: /api/type/:id</p>")
+    res.send("<p>To access pokemon: /api/pokemon/id/:id<br>or<br>/api/pokemon/name/:name</P><br><p>To access type: /api/type/:id</p>")
 })
 
 // CRUD
